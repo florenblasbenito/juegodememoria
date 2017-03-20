@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Ejemplo de lista de tareas con jQuery</title>
+  <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+  <link rel="stylesheet" href="CSS/tareas.css">
+  <script src="scripts/jQuery.js"></script>
+  <script src="scripts/app.js"></script>
+</head>
+
+<body>
+
+
+  <script id="plantillaTarea" type="text/template">
+
+    <li class="todo-list__item">
+      <button class="delete-button">X</button>
+      <span>{{Tarea}}</span>
+    </li>
+  </script>
+
+  <div class="page-container">
+    <h2>Lista de tareas con jQuery - campusMVP</h2>
+    <ul class="add-todo">
+      <li>
+        <input type="text" class="new-item" placeholder="Pulsa y escribe aquí para añadir una tarea">
+      </li>
+    </ul>
+    <ul class="todo-list">
+
+
+
+
+    </ul>
+  </div>
+</body>
+
+</html>
