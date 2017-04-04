@@ -1,0 +1,101 @@
+<script>
+
+
+document.getElementById("pulsar1").onclick = function() {
+    document.getElementById("poema").classList.add("clase1", "clase2", "clase3");
+
+}
+
+document.getElementById("pulsar2").onclick = function(){
+    var x = document.getElementById("poema").classList.length;
+    alert("El texto tiene "+x+" clases");
+
+}
+
+
+    </script>
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.clase1 {
+    width: 500px;
+    height: 80px;
+    padding: 15px;
+    border: 1px solid black;
+}
+.clase2 {
+    background-color: coral;
+    color: yellow;
+}
+.clase3 {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 25px;
+}
+.clase4 {
+    background-color: blue;
+    color: white;
+}
+.clase5 {
+    text-decoration: underline;
+}
+</style>
+<meta charset="utf-8"/>
+<title>DOM classList</title>
+</head>
+<body>
+
+<p>Aplicar las clases a una elemento</p>
+
+<button id="pulsar1">Añadir estilos</button>
+<button id="pulsar2">Contar los estilos</button>
+<button id="pulsar3">Mostrar los estilos</button>
+<button id="pulsar4">Quitar color</button>
+<button id="pulsar5">Quitar estilos</button>
+<button id="pulsar6">Alternar color</button>
+<button id="pulsar7">Alternar subrayado</button>
+
+<p><strong>Nota:</strong> La propiedad "classList" no es soportado por IE9-</p>
+
+<div id="poema">
+En el agua clara que brota en la fuente, un lindo pescado sale de repente.
+</div>
+
+<script>
+document.getElementById("pulsar1").onclick = function() {
+    document.getElementById("poema").classList.add("clase1", "clase2", "clase3");
+}
+document.getElementById("pulsar2").onclick = function() {
+    var x = document.getElementById("poema").classList.length;
+    alert("El texto tiene "+x+" clases");
+}
+document.getElementById("pulsar3").onclick = function() {
+    var x = document.getElementById("poema").classList;
+    alert("Las clases en el texto : "+x);
+}
+document.getElementById("pulsar4").onclick = function() {
+    document.getElementById("poema").classList.remove("clase2");
+}
+document.getElementById("pulsar5").onclick = function() {
+    document.getElementById("poema").classList.remove("clase1", "clase2", "clase3");
+}
+document.getElementById("pulsar6").onclick = function() {
+    document.getElementById("poema").classList.toggle("clase4");
+}
+document.getElementById("pulsar7").onclick = function() {
+    var x = document.getElementById("poema");
+    if (x.classList.contains("clase5")) {
+        x.classList.remove("clase5");
+    } else {
+        x.classList.add("clase5");
+    }
+}
+</script>
+
+</body>
+</html>
+
+
+<!--esto es una prueba-->
