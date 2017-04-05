@@ -89,10 +89,9 @@ function barajear(){
 
 }
 function ajusta(xx, yy){
-    alert(xx+", "+yy);
     var posCanvas = canvas.getBoundingClientRect();
-    var x = xx - posCanvas.x;
-    var y = yy - posCanvas.y;
+    var x = xx - posCanvas.left;
+    var y = yy - posCanvas.top;
     return {x:x, y:y}
 
 }
@@ -100,6 +99,7 @@ function ajusta(xx, yy){
 
 function selecciona(e) {
     var pos = ajusta(e.clientX, e.clientY);
+    alert(pos.x+", "+pos.y);
 
 }
 
