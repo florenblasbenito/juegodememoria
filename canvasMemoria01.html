@@ -17,9 +17,32 @@ h1{
 }
 </style>
 <script>
-    function Carta(x, y, ancho, largo ){
-        
+/*** Variables ****/
+    var ctx, canvas;
+    var colorAtras = "blue";
+    
+    
+    
+    
+    
+    /****FUNCIONES ****/
+    function Carta(x, y, ancho, largo, info ){
+        this.x = x;
+        this.y = y;
+        this.ancho = ancho;
+        this.largo = largo;
+        this.info = info;
+        this.dibujo = dibujaCarta;
     }
+
+function dibujaCarta () {
+    ctx,fillStyle = colorAtras;
+    ctx.fillRect(this.x, this.y, this.ancho, this.largo);
+
+
+}
+
+
 window.onload = function(){
 	canvas = document.getElementById("miCanvas");
 	if(canvas && canvas.getContext){
