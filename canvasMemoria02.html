@@ -43,12 +43,38 @@ function dibujaCarta () {
 }
 
 
+function tablero(){
+    var i;
+    var carta;
+    var x = inicioX;
+    var y = inicioY;
+
+    for(i=0; i<9; i++){
+        carta = new Carta(x, y, cartaAncho, cartaLargo, i);
+        cartas_array.push(carta);
+        carta.dibuja();
+
+        //Creamos la segunda carta
+        carta = new Carta(x, y+cartaAncho+cartaMargen, cartaAncho, cartaLargo, i);
+        cartas_array.push(carta);
+        carta.dibuja();
+
+        //Aumentamos el valor de x
+        
+
+    }
+
+}
+
+
+/***TO DO  ***/
+
 window.onload = function(){
 	canvas = document.getElementById("miCanvas");
 	if(canvas && canvas.getContext){
 		ctx = canvas.getContext("2d");
 		if(ctx){
-			 
+			 tablero();
 		} else {
 			alert("Error al crear tu contexto");	
 		}
