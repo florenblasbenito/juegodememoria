@@ -73,7 +73,21 @@ function tablero(){
     }
 
 }
+function barajear(){
+    var i, j, k;
+    var temporal;
+    var lon = cartas_array.length;
+        for(j=0; j<long*3; j++){
+            i = Math.floor(Math.random()*lon);
+            k = Math.floor(Math.random()*lon);
+            //
+            temporal = cartas_array[i].info;
+            //
+            cartas.array[i].info = cartas_array[k];
+            cartas.array[k].info = temporal;
+        }
 
+}
 
 /***TO DO  ***/
 
