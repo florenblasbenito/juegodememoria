@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CANVAS 01</title>
+<style>
+body{
+	width:960px;
+	margin:0 auto;
+}
+h1{
+	text-align:center;
+}
+#miCanvas{
+	border:dotted 2px yellow;
+	background:green;	
+}
+</style>
+<script>
+/*** Variables ****/
+    var ctx, canvas;
+    var colorAtras = "blue";
+    var inicioX = 45;
+    var inicioY = 50;
+    var cartaMargen = 30;
+    var cartaLon = 30;
+    var cartaAncho = cartaLon * 4;
+    var cartaLargo = cartaLon * 4;
+    var cartas_array = new Array();
+
+    
+    
+    
+    
+    
+    /****FUNCIONES ****/
+    function Carta(x, y, ancho, largo, info ){
+        this.x = x;
+        this.y = y;
+        this.ancho = ancho;
+        this.largo = largo;
+        this.info = info;
+        this.dibuja = dibujaCarta;
+    }
+
+function dibujaCarta () {
+    ctx,fillStyle = colorAtras;
+    ctx.fillRect(this.x, this.y, this.ancho, this.largo);
+
+
+}
+
+
+function tablero(){
+    var i;
+    var carta;
+    var x = inicioX;
+    var y = inicioY;
+
+    for(i=0; i<9; i++){
+        carta = new Carta(x, y, cartaAncho, cartaLargo, i);
+        cartas_array.push(carta);
+        carta.dibuja();
+
+        //Creamos la segunda carta
+        carta = new Carta(x, y+cartaAncho+cartaMargen, cartaAncho, cartaLargo, i);
+        cartas_array.push(carta);
+        carta.dibuja();
+
+        //Aumentamos el valor de x
+        x += cartaAncho + cartaMargen;
+
+    }
+
+}
+
+
+/***TO DO  ***/
+
+window.onload = function(){
+	canvas = document.getElementById("miCanvas");
+	if(canvas && canvas.getContext){
+		ctx = canvas.getContext("2d");
+		if(ctx){
+			 tablero();
+		} else {
+			alert("Error al crear tu contexto");	
+		}
+	}
+}
+</script>
+</head>
+
+<body>
+<h1>Memoria CANVAS</h1>
+<canvas id="miCanvas" width="960px" height="500px">
+Tu navegador no soporta CANVAS
+</canvas>
+</body>
+</html>
