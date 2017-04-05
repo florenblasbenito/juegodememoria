@@ -20,6 +20,14 @@ h1{
 /*** Variables ****/
     var ctx, canvas;
     var colorAtras = "blue";
+    var inicioX = 45;
+    var inicioY = 50;
+    var cartaMargen = 30;
+    var cartaLon = 30;
+    var cartaAncho = cartaLon * 4;
+    var cartaLargo = cartaLon * 4;
+    var cartas_array = new Array();
+
     
     
     
@@ -32,7 +40,7 @@ h1{
         this.ancho = ancho;
         this.largo = largo;
         this.info = info;
-        this.dibujo = dibujaCarta;
+        this.dibuja = dibujaCarta;
     }
 
 function dibujaCarta () {
@@ -60,7 +68,7 @@ function tablero(){
         carta.dibuja();
 
         //Aumentamos el valor de x
-        
+        x += cartaAncho + cartaMargen;
 
     }
 
