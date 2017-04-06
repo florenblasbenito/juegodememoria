@@ -47,7 +47,7 @@
         }
 
         function dibujaCarta() {
-            ctx, fillStyle = colorAtras;
+            ctx. fillStyle = colorAtras;
             ctx.fillRect(this.x, this.y, this.ancho, this.largo);
 
 
@@ -60,7 +60,7 @@
             var x = inicioX;
             var y = inicioY;
 
-            for (i = 0; i < 9; i++) {
+            for(i=0; i<6; i++){
                 carta = new Carta(x, y, cartaAncho, cartaLargo, i);
                 cartas_array.push(carta);
                 carta.dibuja();
@@ -80,14 +80,14 @@
             var i, j, k;
             var temporal;
             var lon = cartas_array.length;
-            for (j = 0; j < long * 3; j++) {
-                i = Math.floor(Math.random() * lon);
-                k = Math.floor(Math.random() * lon);
+            for(j=0; j<lon*3; j++){
+		i = Math.floor(Math.random()*lon);
+		k = Math.floor(Math.random()*lon);	
                 //
                 temporal = cartas_array[i].info;
                 //
-                cartas.array[i].info = cartas_array[k];
-                cartas.array[k].info = temporal;
+                cartas_array[i].info = cartas_array[k];
+                cartas_array[k].info = temporal;
             }
 
         }
@@ -95,7 +95,7 @@
             var posCanvas = canvas.getBoundingClientRect();
             var x = xx - posCanvas.left;
             var y = yy - posCanvas.top;
-            return { x: x, y: y }
+            return { x:x, y:y }
 
         }
 
@@ -104,13 +104,13 @@
             var pos = ajusta(e.clientX, e.clientY);
             //alert(pos.x+", "+pos.y);
 
-            for (var i = 0; i < cartas_array.lenght; i++) {
+            for(var i=0; i<cartas_array.length; i++){
                 var carta = cartas_array[i];
                 if (carta.x > 0) {
                     if ((pos.x > carta.x) &&
                         (pos.x < carta.x + carta.ancho) &&
                         (pos.y > carta.y) &&
-                        (pos.y < carta.y + carta.alto)) {
+                        (pos.y < carta.y + carta.largo)) {
                             alert(i);
                         break;
                     }
@@ -130,7 +130,7 @@
             if (canvas && canvas.getContext) {
                 ctx = canvas.getContext("2d");
                 if (ctx) {
-                    canvas.addEventListener("click", selecciona, false);
+                    canvas.addEventListener("click",selecciona,false);
                     tablero();
                     barajear();
                 } else {
