@@ -1,0 +1,176 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>CANVAS 01</title>
+    <style>
+        body {
+            width: 960px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+        }
+        
+        #miCanvas {
+            border: dotted 2px yellow;
+            background: green;
+        }
+    </style>
+    <script>
+        /*** Variables ****/
+        var ctx, canvas;
+        var primerCarta = true;
+        var cartaPrimera, cartaSegunda;
+        var colorDelante = "yellow";
+        var colorAtras = "blue";
+        var colorCanvas = "green";
+        var inicioX = 45;
+        var inicioY = 50;
+        var cartaMargen = 30;
+        var cartaLon = 30;
+        var cartaAncho = cartaLon * 4;
+        var cartaLargo = cartaLon * 4;
+        var cartas_array = new Array();
+
+
+
+
+
+
+        /****FUNCIONES ****/
+        function Carta(x, y, ancho, largo, info) {
+            this.x = x;
+            this.y = y;
+            this.ancho = ancho;
+            this.largo = largo;
+            this.info = info;
+            this.dibuja = dibujaCarta;
+        }
+
+        function dibujaCarta() {
+            ctx.fillStyle = colorAtras;
+            ctx.fillRect(this.x, this.y, this.ancho, this.largo);
+
+
+        }
+
+
+        function tablero() {
+            var i;
+            var carta;
+            var x = inicioX;
+            var y = inicioY;
+
+            for(i=0; i<6; i++){
+                carta = new Carta(x, y, cartaAncho, cartaLargo, i);
+                cartas_array.push(carta);
+                carta.dibuja();
+
+                //Creamos la segunda carta
+                carta = new Carta(x, y + cartaAncho + cartaMargen, cartaAncho, cartaLargo, i);
+                cartas_array.push(carta);
+                carta.dibuja();
+
+                //Aumentamos el valor de x
+                x += cartaAncho + cartaMargen;
+
+            }
+
+        }
+        function barajear() {
+            var i, j, k;
+            var temporal;
+            var lon = cartas_array.length;
+            for(j=0; j<lon*3; j++){
+		i = Math.floor(Math.random()*lon);
+		k = Math.floor(Math.random()*lon);	
+                //
+                temporal = cartas_array[i].info;
+                //
+                cartas_array[i].info = cartas_array[k].info;
+                cartas_array[k].info = temporal;
+            }
+
+        }
+        function ajusta(xx, yy) {
+            var posCanvas = canvas.getBoundingClientRect();
+            var x = xx - posCanvas.left;
+            var y = yy - posCanvas.top;
+            return { x:x, y:y }
+
+        }
+
+
+        function selecciona(e) {
+            var pos = ajusta(e.clientX, e.clientY);
+            //alert(pos.x+", "+pos.y);
+
+            for(var i=0; i<cartas_array.length; i++){
+                var carta = cartas_array[i];
+                if (carta.x > 0) {
+                    if ((pos.x > carta.x) &&
+                        (pos.x < carta.x + carta.ancho) &&
+                        (pos.y > carta.y) &&
+
+                        (pos.y < carta.y+carta.largo)){
+                            if((primeraCarta) || (i!=cartaPrimera)) break;
+                        }
+                }
+
+                        }
+	//Encontramos la carta
+	if(i<cartas_array.length){
+		if(primerCarta){
+			cartaPrimera = i;
+			primerCarta = false;
+			pinta(carta);
+		} else {
+			cartaSegunda = i;
+			pinta(carta);
+
+
+
+                        }
+        }
+        }
+
+function pinta(carta) {
+    ctx.fillStyle = colorDelante;
+    ctx.fillRect(carta.x, carta.y, carta.ancho, carta.largo);
+    ctx.font = "bold 40px Comic";
+    ctx.fillStyle = "black";
+    ctx.fillText(String(carta.info), carta.x+carta.ancho/2-10, carta.y+carta.largo/2+10);
+
+
+}
+
+        /***TO DO  ***/
+
+        window.onload = function () {
+            canvas = document.getElementById("miCanvas");
+            if (canvas && canvas.getContext) {
+                ctx = canvas.getContext("2d");
+                if (ctx) {
+                    canvas.addEventListener("click",selecciona,false);
+                    tablero();
+                    barajear();
+                } else {
+                    alert("Error al crear tu contexto");
+                }
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+    <h1>Memoria CANVAS</h1>
+    <canvas id="miCanvas" width="960px" height="500px">
+        Tu navegador no soporta CANVAS
+    </canvas>
+</body>
+
+</html>
